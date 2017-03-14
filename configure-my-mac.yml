@@ -1,0 +1,10 @@
+---
+- hosts: localhost
+  connection: local
+  become: true
+  gather_facts: False
+  tasks:
+     #- name: Copy requirements.txt
+    - name: Install pip packages
+      command: pip install -r files/ansible_requirements.txt
+      register: status
