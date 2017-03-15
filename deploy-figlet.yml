@@ -1,0 +1,20 @@
+---
+- hosts: localhost
+  become: yes
+  tasks:
+     - name: generate hostname figlet
+       become: no
+       local_action: shell figlet {{ ansible_hostname }}
+       register: figlet
+     - name: copy figlet into /etc/motd
+       copy:
+          content: "{{ figlet.stdout }}"
+          dest: /etc/motd
+     - name: Add notice to /etc/motd
+       shell: >
+            echo '\n\n
+            WARNING: This computer system is restricted to authorized users.\n
+            Individuals using this system without authority,or in excess of their\n            authority,are in violation of the acceptable use policy and may be \n              prosecuted.
+            \n\n
+            SRE Team - https://saltside.ca\n
+            sre@saltside.se\n' >> /etc/motd
