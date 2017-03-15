@@ -1,13 +1,26 @@
 ---
 - hosts: localhost
   connection: local
-  become: true
   gather_facts: False
+  roles:
+    - name: Applying role on Mac
+      role: mac
+  
+  #General configuration for all platforms
   tasks:
-    - name: Install python
-      command: brew install python
+    - name: Create temp directory for work
+      command: mktemp -d
+      changed_when: false
+      register: temp_dir
+
+    - name: Download get-pip.py
+      get_url: 
+        url: "{{ pip_url }}"
+        dest: /tmp  
+        mode: 755
 
       #- name: Copy requirements.txt
     - name: Install pip packages
       command: pip install -r files/ansible_requirements.txt
       register: status
+

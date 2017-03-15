@@ -1,0 +1,9 @@
+---
+- name: Create temp directory for work
+  command: mktemp -d
+  changed_when: false
+  register: temp
+
+- name: Install python
+  command: brew install python
+  register: python_version

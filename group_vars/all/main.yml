@@ -1,0 +1,2 @@
+# General purpose variables to be used across all groups/hosts
+pip_url: https://bootstrap.pypa.io/get-pip.py
