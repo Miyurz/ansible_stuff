@@ -17,7 +17,6 @@
       get_url: 
         url: "{{ pip_url }}"
         dest: /tmp  
-        mode: 755
 
       #- name: Copy requirements.txt
     - name: Install pip packages
