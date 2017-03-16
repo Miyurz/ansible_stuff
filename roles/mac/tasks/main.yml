@@ -4,6 +4,14 @@
   changed_when: false
   register: temp
 
-- name: Install python
+- name: Install python 2.7.13
   command: brew install python
   register: python_version
+
+- name: Install ruby
+  command: brew install ruby@2.3
+  register: ruby_version
+
+- name: Install vagrant
+  command: brew install ruby@2.3
+  register: vagrant_version

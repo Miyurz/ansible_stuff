@@ -16,10 +16,16 @@
     - name: Download get-pip.py
       get_url: 
         url: "{{ pip_url }}"
-        dest: /tmp  
+        dest: /tmp
+        owner: root
         mode: 755
 
-      #- name: Copy requirements.txt
+    # - name: Copy requirements.txt
+    - name: Install pip packages
+      command: pip install -r files/ansible_requirements.txt
+      register: status
+
+    # - name: Copy
     - name: Install pip packages
       command: pip install -r files/ansible_requirements.txt
       register: status
