@@ -1,0 +1,40 @@
+---
+#- name: Create temp directory for work
+#  command: mktemp -d
+#  changed_when: false
+#  register: temp
+
+#- name: Install python 2.7.13
+#  command: brew install python
+#  register: python_version
+
+#- name: Install ruby
+#  command: brew install ruby@2.3
+#  register: ruby_version
+
+- name: Get username
+  become: false
+  local_action: command whoami
+  register: host_user
+
+- debug: var=host_user
+
+- name: Add user to sudoers with NOPASSWD enabled
+  replace:
+    path: roles/mac/files/sudoers
+    regexp: '^(username)\s+\s*$'
+    replace: '\1 {{ host_user }}'
+    validate: 'visudo -cf %s'
+
+
+#- name: Copy a new "sudoers" file into place, after passing validation with visudo
+#  template:
+#    src: /mine/sudoers
+#    dest: /etc/sudoers
+#    validate: 'visudo -cf %s'
+
+
+  
+  #- name: Install vagrant
+  #command: brew install ruby@2.3
+  #register: vagrant_version
