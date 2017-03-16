@@ -19,12 +19,26 @@
 
 - debug: var=host_user
 
+- name: Set username
+  set_fact:
+    username: "{{ host_user.stdout }}" 
+
+- debug: var=username
+
 - name: Add user to sudoers with NOPASSWD enabled
-  replace:
-    path: roles/mac/files/sudoers
-    regexp: '^(username)\s+\s*$'
-    replace: '\1 {{ host_user }}'
-    validate: 'visudo -cf %s'
+  template:
+    src: roles/mac/templates/sudoers.j2
+    dest: /tmp/sudoers
+    #owner: root
+    #group: wheel
+    #validate: 'visudo -cf %s'
+
+  #- name: Add user to sudoers with NOPASSWD enabled
+  #replace:
+  #  dest: roles/mac/files/sudoers
+  #  regexp: '^(username)\s+80\s*$'
+  #  replace: '\1 {{ host_user }}'
+  #  validate: 'visudo -cf %s'
 
 
 #- name: Copy a new "sudoers" file into place, after passing validation with visudo
