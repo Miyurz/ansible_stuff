@@ -19,7 +19,13 @@
 
 - debug: var=host_user
 
-#- name: Add username to sudoers with NOPASSWD enabled
+- name: Add user to sudoers with NOPASSWD enabled
+  replace:
+    path: roles/mac/files/sudoers
+    regexp: '^(username)\s+\s*$'
+    replace: '\1 {{ host_user }}'
+    validate: 'visudo -cf %s'
+
 
 #- name: Copy a new "sudoers" file into place, after passing validation with visudo
 #  template:
