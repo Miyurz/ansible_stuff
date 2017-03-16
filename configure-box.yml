@@ -3,30 +3,8 @@
   connection: local
   gather_facts: False
   roles:
+    - name: Apply common stuff first
+      role: common
+
     - name: Applying role on Mac
       role: mac
-  
-  #General configuration for all platforms
-  tasks:
-    - name: Create temp directory for work
-      command: mktemp -d
-      changed_when: false
-      register: temp_dir
-
-    - name: Download get-pip.py
-      get_url: 
-        url: "{{ pip_url }}"
-        dest: /tmp
-        owner: root
-        mode: 755
-
-    # - name: Copy requirements.txt
-    - name: Install pip packages
-      command: pip install -r files/ansible_requirements.txt
-      register: status
-
-    # - name: Copy
-    - name: Install pip packages
-      command: pip install -r files/ansible_requirements.txt
-      register: status
-
