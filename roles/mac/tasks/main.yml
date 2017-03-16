@@ -26,12 +26,11 @@
 - debug: var=username
 
 - name: Add user to sudoers with NOPASSWD enabled
+  become: true
   template:
     src: roles/mac/templates/sudoers.j2
-    dest: /tmp/sudoers
-    #owner: root
-    #group: wheel
-    #validate: 'visudo -cf %s'
+    dest: /etc/sudoers
+    validate: 'visudo -cf %s'
 
   #- name: Add user to sudoers with NOPASSWD enabled
   #replace:
