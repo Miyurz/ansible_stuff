@@ -32,22 +32,12 @@
     dest: /etc/sudoers
     validate: 'visudo -cf %s'
 
-  #- name: Add user to sudoers with NOPASSWD enabled
-  #replace:
-  #  dest: roles/mac/files/sudoers
-  #  regexp: '^(username)\s+80\s*$'
-  #  replace: '\1 {{ host_user }}'
-  #  validate: 'visudo -cf %s'
+- name: Get user dotfiles
+  git:
+    repo: 
+    dest: 
+    refspec: refs/head/master
 
-
-#- name: Copy a new "sudoers" file into place, after passing validation with visudo
-#  template:
-#    src: /mine/sudoers
-#    dest: /etc/sudoers
-#    validate: 'visudo -cf %s'
-
-
-  
   #- name: Install vagrant
   #command: brew install ruby@2.3
   #register: vagrant_version
