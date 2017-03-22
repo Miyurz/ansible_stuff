@@ -12,8 +12,15 @@
     dest: /tmp
     owner: root
 
+- name: Install pip
+  become: true
+  shell: python get-pip.py
+  args:
+    chdir: /tmp
+
 # - name: Copy requirements.txt
 - name: Install pip packages
+  become: true
   command: pip install -r files/ansible_requirements.txt
   register: status
 
