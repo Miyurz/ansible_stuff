@@ -1,2 +1,4 @@
+docker-py
 ansible-lint
 argcomplete
+yamllint

@@ -19,25 +19,22 @@
 
 - debug: var=host_user
 
-- name: Set username
-  set_fact:
-    username: "{{ host_user.stdout }}" 
-
-- debug: var=username
-
 - name: Add user to sudoers with NOPASSWD enabled
-  become: true
-  template:
-    src: roles/mac/templates/sudoers.j2
-    dest: /etc/sudoers
+  replace:
+    path: roles/mac/files/sudoers
+    regexp: '^(username)\s+\s*$'
+    replace: '\1 {{ host_user }}'
     validate: 'visudo -cf %s'
 
-- name: Get user dotfiles
-  git:
-    repo: git@github.com:Miyurz/dotfiles.git 
-    dest: ~/dotfiles
-    refspec: master
 
+#- name: Copy a new "sudoers" file into place, after passing validation with visudo
+#  template:
+#    src: /mine/sudoers
+#    dest: /etc/sudoers
+#    validate: 'visudo -cf %s'
+
+
+  
   #- name: Install vagrant
   #command: brew install ruby@2.3
   #register: vagrant_version
