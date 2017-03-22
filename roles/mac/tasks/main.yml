@@ -34,9 +34,9 @@
 
 - name: Get user dotfiles
   git:
-    repo: 
-    dest: 
-    refspec: refs/head/master
+    repo: git@github.com:Miyurz/dotfiles.git 
+    dest: ~/dotfiles
+    refspec: master
 
   #- name: Install vagrant
   #command: brew install ruby@2.3
