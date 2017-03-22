@@ -22,3 +22,9 @@
   command: pip install -r files/ansible_requirements.txt
   register: status
 
+# - name: Clone dotfiles repo
+- name: Clone dotfiles repo
+  git:
+    repo: git@github.com:Miyurz/dotfiles.git
+    dest: "{{ temp_dir }}"
+    refspec: 'refs/heads/master'
