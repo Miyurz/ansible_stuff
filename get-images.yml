@@ -1,0 +1,18 @@
+---
+- hosts: localhost
+  gather_facts: no
+  connection: local
+
+  tasks:
+  - name: Apache Web server
+    docker_image:
+      name: httpd
+      tag: 2.4
+      state: present
+
+  - name: Redis image
+    docker_image:
+      name: redis
+      tag: 3.2
+      state: present
+
