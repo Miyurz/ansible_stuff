@@ -1,6 +1,6 @@
 ansible-lint==3.4.11
 argcomplete==1.8.2
-asn1crypto==0.21.1
+#asn1crypto==0.21.1
 backports.ssl-match-hostname==3.5.0.1
 cffi==1.9.1
 cryptography==1.8.1
@@ -11,7 +11,7 @@ idna==2.5
 ipaddress==1.0.18
 Jinja2==2.8.1
 MarkupSafe==1.0
-meld==3.16.3
+#meld==3.16.3
 oauthlib==2.0.1
 packaging==16.8
 paramiko==2.1.2
@@ -22,7 +22,8 @@ pycrypto==2.6.1
 pygobject==3.22.0
 pyparsing==2.2.0
 PyYAML==3.12
-ranger==1.8.1
+Sphinx==1.5.3
+#ranger==1.8.1
 requests==2.13.0
 requests-oauthlib==0.7.0
 setuptools==32.1.0

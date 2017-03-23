@@ -21,8 +21,9 @@
 # - name: Copy requirements.txt
 - name: Install pip packages
   become: true
-  command: pip install -r files/ansible_requirements.txt
-  register: status
+  pip:
+    requirements: files/ansible_requirements.txt
+    state: present
 
 # - name: Copy
 - name: Install pip packages
