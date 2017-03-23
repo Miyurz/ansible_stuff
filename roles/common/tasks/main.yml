@@ -22,13 +22,9 @@
 - name: Install pip packages
   become: true
   pip:
-    requirements: files/ansible_requirements.txt
+    requirements: ansible_requirements.txt
     state: present
-
-# - name: Copy
-- name: Install pip packages
-  command: pip install -r files/ansible_requirements.txt
-  register: status
+    chdir: files/
 
 # - name: Clone dotfiles repo
 - name: Clone dotfiles repo
