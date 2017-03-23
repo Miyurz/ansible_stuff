@@ -31,4 +31,4 @@
   git:
     repo: git@github.com:Miyurz/dotfiles.git
     dest: "{{ temp_dir }}"
-    refspec: 'refs/heads/master'
+    refspec: 'master'

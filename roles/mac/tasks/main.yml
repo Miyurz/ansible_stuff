@@ -32,12 +32,6 @@
     dest: /etc/sudoers
     validate: 'visudo -cf %s'
 
-- name: Get user dotfiles
-  git:
-    repo: git@github.com:Miyurz/dotfiles.git 
-    dest: ~/dotfiles
-    refspec: master
-
   #- name: Install vagrant
   #command: brew install ruby@2.3
   #register: vagrant_version
