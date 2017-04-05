@@ -1,10 +1,18 @@
 ---
 - hosts: localhost
   connection: local
-  gather_facts: False
-  roles:
-    - name: Apply common stuff first
-      role: common
+  gather_facts: true
 
-    - name: Applying role on Mac
-      role: mac
+  pre_tasks:
+    - shell: figlet 'Running PRE-TASKS ...'
+
+  roles:
+    - {role: common, tags: ['all', 'common', 'first']}
+    - {role: mac, tags: ["OSX", "Mac"]}
+    - {role: ubuntu-16.04, tags: ["16.04", "Ubuntu"]}
+
+  tasks:
+    - shell: figlet 'Running TASKS ...'
+
+  post_tasks:
+    - shell: figlet 'Running POST-TASKS ...'

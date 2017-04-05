@@ -12,13 +12,23 @@
     dest: /tmp
     owner: root
 
+- name: Install pip
+  become: true
+  shell: python get-pip.py
+  args:
+    chdir: /tmp
+
 # - name: Copy requirements.txt
 - name: Install pip packages
-  command: pip install -r files/ansible_requirements.txt
-  register: status
+  become: true
+  pip:
+    requirements: ansible_requirements.txt
+    state: present
+    chdir: files/
 
-# - name: Copy
-- name: Install pip packages
-  command: pip install -r files/ansible_requirements.txt
-  register: status
-
+# - name: Clone dotfiles repo
+- name: Clone dotfiles repo
+  git:
+    repo: git@github.com:Miyurz/dotfiles.git
+    dest: "{{ temp_dir }}"
+    refspec: 'master'
