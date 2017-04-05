@@ -4,15 +4,20 @@
   gather_facts: true
 
   pre_tasks:
-    - shell: figlet 'Running PRE-TASKS ...'
+    - shell: echo 'Running PRE-TASKS ...'
+
+    - name: Get hostname
+      local_action: command hostname
+      register: hostname
+
+    - debug: msg=hostname.stdout
 
   roles:
-    - {role: common, tags: ['all', 'common', 'first']}
-    - {role: mac, tags: ["OSX", "Mac"]}
-    - {role: ubuntu-16.04, tags: ["16.04", "Ubuntu"]}
+          - {role: ssh-banner, host: 'My Machine' ,tags: ['ssh-banner', 'banner', 'bootstrap', 'provision']}
+    # - {role: common, tags: ['common', 'all']}
 
   tasks:
-    - shell: figlet 'Running TASKS ...'
+    - shell: echo 'Running TASKS ...'
 
   post_tasks:
-    - shell: figlet 'Running POST-TASKS ...'
+    - shell: echo 'Running POST-TASKS ...'
