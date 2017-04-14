@@ -13,7 +13,7 @@
     - debug: msg=hostname.stdout
 
   roles:
-          - {role: ssh-banner, host: 'My Machine' ,tags: ['ssh-banner', 'banner', 'bootstrap', 'provision']}
+    - {role: ssh-banner, host: 'My Machine' ,tags: ['ssh-banner', 'banner', 'bootstrap', 'provision']}
     # - {role: common, tags: ['common', 'all']}
 
   tasks:
