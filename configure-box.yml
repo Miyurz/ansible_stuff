@@ -13,7 +13,8 @@
     - debug: msg=hostname.stdout
 
   roles:
-          - {role: ssh-banner, host: 'My Machine' ,tags: ['ssh-banner', 'banner', 'bootstrap', 'provision']}
+    - {role: ssh-banner, host: 'My Machine' ,tags: ['ssh-banner', 'banner', 'bootstrap', 'provision']}
+    - {role: minikube, tags: ['minikube', 'kubernetes', 'kubectl', 'cluster']}
     # - {role: common, tags: ['common', 'all']}
 
   tasks:
