@@ -1,3 +1,6 @@
 [submodule "roles/ssh-banner"]
 	path = roles/ssh-banner
 	url = git@github.com:Miyurz/ansible-role-ssh-banner.git
+[submodule "roles/minikube"]
+	path = roles/minikube
+	url = git@github.com:Miyurz/ansible-role-minikube.git
