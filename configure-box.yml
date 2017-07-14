@@ -10,15 +10,18 @@
       local_action: command hostname
       register: hostname
 
-    - debug: msg=hostname.stdout
+    #- debug: msg=hostname.stdout
+
+    - set_fact: 
+        host: "{{ hostname.stdout }}"
 
   roles:
-    - {role: ssh-banner, host: 'My Machine' ,tags: ['ssh-banner', 'banner', 'bootstrap', 'provision']}
-    - {role: minikube, tags: ['minikube', 'kubernetes', 'kubectl', 'cluster']}
+    - {role: ssh-banner, tags: ['ssh-banner', 'banner', 'bootstrap', 'provision']}
+    #- {role: minikube, tags: ['minikube', 'kubernetes', 'kubectl', 'cluster']}
     # - {role: common, tags: ['common', 'all']}
 
   tasks:
-    - shell: echo 'Running TASKS ...'
+    - shell: echo 'Running TASKS ...' "{{ host }}"
 
   post_tasks:
     - shell: echo 'Running POST-TASKS ...'
