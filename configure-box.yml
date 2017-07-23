@@ -10,8 +10,6 @@
       local_action: command hostname
       register: hostname
 
-    #- debug: msg=hostname.stdout
-
     - set_fact: 
         host: "{{ hostname.stdout }}"
 
