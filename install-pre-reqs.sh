@@ -27,7 +27,11 @@ function installDebianPackages {
                                                   print(".".join(map(str, sys.version_info[:3])))'
                                       ` \
                                 echo "Python version is ${version}" \
-                              ) 
+                              )\
+                           ||
+		              ( \
+				echo "Python not installed" \
+                              )
                            
   
   #2. Install ansible if not installed
