@@ -19,42 +19,41 @@ function checkIfDebianOrRPM {
   echo $flavor
 }
 
-function installDebianPackages {
- 
-  sudo apt-get update -y
-  #1. Install python 3 if not installed
-  #1. Install python 3 if not installed
+function checkIfPythonExists() {
+
   which python > /dev/null && { version=$(python -c 'import sys; \
                                                   print(".".join(map(str, sys.version_info[:3])))');\
-                                echo "Python version is ${version}" \ 
+                                echo "Python version is ${version}" \
+                                return ${version} 
                               } \
                            || {  echo Python not installed; \
+                                 return 0;
                               }
+}
 
-  #2. Install ansible if not installed
- 
 
- 
-  #2. Install ansible if not installed
+function installDebianPackages {
+  sudo apt-get update -y
+
+  #1. Install python 3 if not installed
+  if [ $(checkIfPythonExists) == "0" ];
+  then
+    sudo apt-get install python-dev python3 -y
+  fi
+  
+  #2. Install python pip
   
 }
 
 function installRPMPackages() {
   sudo yum update -y
-  #1. Install python 3 if not installed
-  #1. Install python 3 if not installed
-  which python > /dev/null && { version=$(python -c 'import sys; \
-                                                  print(".".join(map(str, sys.version_info[:3])))');\
-                                echo "Python version is ${version}" \ 
-                              } \
-                           || {  echo Python not installed; \
-                              }
-
-  #2. Install ansible if not installed
- 
- 
-  #2. Install ansible if not installed
   
+  #1. Install python 3 if not installed
+  checkIfPythonExists
+
+  #2. Install python pip
+       
+
 }
 
 function main {
