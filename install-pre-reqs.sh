@@ -54,9 +54,7 @@ function installRPMPackages() {
   #1. Install python 3 if not installed
   checkIfPythonExists
 
-  #2. Install python pip
-  #sudo yum install python-pip python-wheel
-  #sudo yum upgrade python-setuptools       
+  # DO NOT DELETE THE OLD PYTHON2.6 that comes pre-bundled with RHEL/CentOS/Fedora. yum is written in Python and there will be many problems with repairing the system.
 
   #A collection of utilities and plugins that extend and supplement yum
   sudo yum -y install yum-utils
@@ -74,6 +72,11 @@ function installRPMPackages() {
   #We will next install pip, which will manage software packages for Python:
   sudo yum -y install python36u-pip
 
+  #List installed pip packages
+  /bin/pip3.6 list --format=columns
+
+  #Install ansible via pip
+  sudo /bin/pip3.6 install -y ansible
 }
 
 function main {
