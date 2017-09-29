@@ -19,15 +19,15 @@ function checkIfDebianOrRPM {
   echo $flavor
 }
 
-function checkIfPythonExists() {
+function checkIfPythonExists {
 
   which python > /dev/null && { version=$(python -c 'import sys; \
                                                   print(".".join(map(str, sys.version_info[:3])))');\
-                                echo "Python version is ${version}" \
-                                return ${version} 
+                                #echo "Python version is ${version}" \
+                                echo ${version} 
                               } \
-                           || {  echo Python not installed; \
-                                 return 0;
+                           || {  #echo Python not installed; \
+                                echo 0;
                               }
 }
 
@@ -39,6 +39,8 @@ function installDebianPackages {
   if [ $(checkIfPythonExists) == "0" ];
   then
     sudo apt-get install python-dev python3 -y
+  else
+    echo Python version installed is $(checkIfPythonExists)
   fi
   
   #2. Install python pip
