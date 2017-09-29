@@ -23,17 +23,18 @@ function installDebianPackages {
  
   sudo apt-get update -y
   #1. Install python 3 if not installed
-  which python > /dev/null && ( version=`python -c 'import sys; \
-                                                  print(".".join(map(str, sys.version_info[:3])))'
-                                      ` \
-                                echo "Python version is ${version}" \
-                              )\
-                           ||
-		              ( \
-				echo "Python not installed" \
-                              )
-                           
-  
+  #1. Install python 3 if not installed
+  which python > /dev/null && { version=$(python -c 'import sys; \
+                                                  print(".".join(map(str, sys.version_info[:3])))');\
+                                echo "Python version is ${version}" \ 
+                              } \
+                           || {  echo Python not installed; \
+                              }
+
+  #2. Install ansible if not installed
+ 
+
+ 
   #2. Install ansible if not installed
   
 }
@@ -41,16 +42,17 @@ function installDebianPackages {
 function installRPMPackages() {
   sudo yum update -y
   #1. Install python 3 if not installed
-  which python > /dev/null && ( version=`python -c 'import sys; \
-                                                  print(".".join(map(str, sys.version_info[:3])))'
-                                      ` \
-                                echo "Python version is ${version}" \
-                              )\
-                           ||
-		              ( \
-				echo "Python not installed" \
-                              )
-  
+  #1. Install python 3 if not installed
+  which python > /dev/null && { version=$(python -c 'import sys; \
+                                                  print(".".join(map(str, sys.version_info[:3])))');\
+                                echo "Python version is ${version}" \ 
+                              } \
+                           || {  echo Python not installed; \
+                              }
+
+  #2. Install ansible if not installed
+ 
+ 
   #2. Install ansible if not installed
   
 }
