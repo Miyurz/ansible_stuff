@@ -19,11 +19,34 @@ function checkIfDebianOrRPM {
   echo $flavor
 }
 
+function installDebianPackages {
+ 
+  sudo apt-get update -y
+  #1. Install python 3 if not installed
+  which python > /dev/null && ( version=`python -c 'import sys; \
+                                                  print(".".join(map(str, sys.version_info[:3])))'
+                                      ` \
+                                echo "Python version is ${version}" \
+                              ) 
+                           
+  
+  #2. Install ansible if not installed
+  
+}
 
-#1. Install python 3
-
-#2. Install ansible 
-
+function installRPMPackages() {
+  yum update -y
+  #1. Install python 3 if not installed
+  which python > /dev/null && ( version=`python -c 'import sys; \
+                                                  print(".".join(map(str, sys.version_info[:3])))'
+                                      ` \
+                                echo "Python version is ${version}" \
+                              ) 
+  echo Python version is $version
+  
+  #2. Install ansible if not installed
+  
+}
 
 function main {
 
@@ -38,9 +61,11 @@ function main {
         case "${distro}" in
           rpm)
             echo "Install via yum"
+            installRPMPackages
           ;;
           debian)
             echo "Install via apt-get"
+            installDebianPackages
           ;;
           *)
             echo "Unknown Linux distro :| "
