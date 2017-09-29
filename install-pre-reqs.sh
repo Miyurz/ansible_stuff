@@ -19,9 +19,9 @@ function checkIfDebianOrRPM {
   echo $flavor
 }
 
-function checkIfPython3Exists {
+function checkIfPythonExists {
 
-  which python > /dev/null && { version=$(python3 -c 'import sys; \
+  which python > /dev/null && { version=$(python -c 'import sys; \
                                                   print(".".join(map(str, sys.version_info[:3])))');\
                                 #echo "Python version is ${version}" \
                                 echo ${version} 
@@ -33,16 +33,20 @@ function checkIfPython3Exists {
 
 
 function installDebianPackages {
-  sudo apt-get update -y
+  #sudo apt-get update -y
 
-  #1. Install python 3 if not installed
-  if [ $(checkIfPython3Exists) == "0" ];
+  #1. Install python 3 if python is not installed or 2.x version is installed
+  if  [[ "$(checkIfPythonExists)" == "0" || "$(checkIfPythonExists)" =~ "2."* ]];
   then
+    #2. Install python3 and pip3
+    echo "Upgrade all packages"
     sudo apt-get -y upgrade
-  #2. Install python3 and pip3
-    sudo apt-get install python-dev python3 python3-pip -y
+    echo "Install python3"
+    sudo apt-get install -y python3 
+    echo "Install python3 pip"
+    sudo apt-get install -y python3-pip
   else
-    echo Python version installed is $(checkIfPython3Exists)
+    echo Python version installed is $(checkIfPythonExists)
   fi
   
   sudo pip install --upgrade pip  
@@ -54,7 +58,7 @@ function installRPMPackages() {
   sudo yum update -y
   
   #1. Install python 3 if not installed
-  checkIfPython3Exists
+  checkIfPythonExists
 
   # DO NOT DELETE THE OLD PYTHON2.6 that comes pre-bundled with RHEL/CentOS/Fedora. yum is written in Python and there will be many problems with repairing the system.
 
