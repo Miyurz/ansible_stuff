@@ -44,7 +44,8 @@ function installDebianPackages {
   fi
   
   #2. Install python pip
-  
+  sudo apt-get install python-pip python-dev build-essential  -y
+  sudo pip install --upgrade pip  
 }
 
 function installRPMPackages() {
@@ -54,7 +55,8 @@ function installRPMPackages() {
   checkIfPythonExists
 
   #2. Install python pip
-       
+  sudo yum install python-pip python-wheel
+  sudo yum upgrade python-setuptools       
 
 }
 
