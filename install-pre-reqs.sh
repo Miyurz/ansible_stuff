@@ -35,7 +35,7 @@ function installDebianPackages {
 }
 
 function installRPMPackages() {
-  yum update -y
+  sudo yum update -y
   #1. Install python 3 if not installed
   which python > /dev/null && ( version=`python -c 'import sys; \
                                                   print(".".join(map(str, sys.version_info[:3])))'
