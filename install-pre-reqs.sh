@@ -50,6 +50,7 @@ function installDebianPackages {
 }
 
 function installRPMPackages() {
+  sudo yum clean all 
   sudo yum update -y
   
   #1. Install python 3 if not installed
