@@ -55,8 +55,24 @@ function installRPMPackages() {
   checkIfPythonExists
 
   #2. Install python pip
-  sudo yum install python-pip python-wheel
-  sudo yum upgrade python-setuptools       
+  #sudo yum install python-pip python-wheel
+  #sudo yum upgrade python-setuptools       
+
+  #A collection of utilities and plugins that extend and supplement yum
+  sudo yum -y install yum-utils
+  #CentOS Development Tools, which are used to allow you to build and compile software from source code:
+  sudo yum -y groupinstall development 
+
+  #CentOS is derived from RHEL (Red Hat Enterprise Linux), which has stability as its primary focus. Because of this, tested and stable versions of applications are what is most commonly found on the system and in downloadable packages, so on CentOS you will only find Python 2.Since instead we would like to install the most current upstream stable release of Python 3, we will need to install IUS, which stands for Inline with Upstream Stable. A community project, IUS provides Red Hat Package Manager (RPM) packages for some newer versions of select software
+
+  #To install IUS, let’s install it through yum:
+  sudo yum -y install https://centos7.iuscommunity.org/ius-release.rpm
+  
+  #Once IUS is finished installing, we can install the most recent version of Python:
+  sudo yum -y install python36u
+ 
+  #We will next install pip, which will manage software packages for Python:
+  sudo yum -y install python36u-pip
 
 }
 
