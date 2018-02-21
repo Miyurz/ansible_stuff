@@ -15,8 +15,8 @@
 
   roles:
     - {role: common, tags: ['common', 'base']}
-    #- {role: ssh-banner, tags: ['ssh-banner', 'banner', 'bootstrap', 'provision']}
-    #- {role: gcloud, tags: ['google-cloud-suite', 'gcloud']}
+    - {role: ssh-banner, tags: ['ssh-banner', 'banner', 'bootstrap', 'provision']}
+    - {role: gcp, tags: ['google-cloud-suite', 'gcloud']}
     #- {role: minikube, tags: ['minikube', 'kubernetes', 'kubectl', 'cluster']}
     # - {role: common, tags: ['common', 'all']}
 

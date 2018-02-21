@@ -1,0 +1,19 @@
+---
+
+- name: Update YUM with Cloud SDK repo information 
+  become: true
+  yum_repository:
+    name: Google Cloud SDK
+    description: YUM with Cloud SDK repo information
+    baseurl: https://packages.cloud.google.com/yum/repos/cloud-sdk-el7-x86_64
+    gpgkey: https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+    enabled: yes
+    gpgcheck: yes
+    repo_gpgcheck: yes
+
+- name: Install gcloud sdk
+  become: true
+  yum:
+    state: present
+    name: google-cloud-sdk
+

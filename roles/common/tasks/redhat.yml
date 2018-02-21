@@ -1,0 +1,26 @@
+---
+- name: Redhat family
+  command: echo Redhat family  
+
+#- name: Install p
+#  become: true
+#  command: dnf install -y python2-dnf
+
+- name: Install python bindings (libselinux-python) needed by target selinux
+  become: true
+  yum:
+    state: present
+    name: libselinux-python
+
+- name: Install openssl-devel for pip packages
+  become: true
+  yum:
+    state: present
+    name: openssl-devel
+
+- name: Install tmux
+  become: true
+  yum:
+    state: present
+    name: tmux
+
