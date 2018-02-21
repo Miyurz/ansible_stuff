@@ -1,4 +1,17 @@
 ---
+
+- include: debian.yml
+  when: ansible_os_family == 'Debian'
+  tags: package
+
+- include: redhat.yml
+  when: ansible_os_family == 'RedHat'
+  tags: package
+
+- include: darwin.yml
+  when: ansible_os_family == 'Darwin'
+  tags: package
+
 #general purpose playbook to be applied on all platforms
 - name: Create temp directory for work
   command: mktemp -d
