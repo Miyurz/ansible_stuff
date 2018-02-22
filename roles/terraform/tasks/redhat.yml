@@ -17,21 +17,10 @@
     name: google-cloud-sdk
 
 - name: check gcloud version
-  command: gcloud version
-  register: gcloud_version
-
-- debug :
-    msg: "Installed gcloud version : {{ gcloud_version }}"
+    
 
 - name: Install kubectl from gcp sdk repo 
   become: true
   yum:
     state: present
     name: kubectl
-
-- name: check client kubectl version
-  command: kubectl version --client
-  register: kubectl_version
-
-- debug :
-    msg: "Installed kubectl version : {{ kubectl_version }}"

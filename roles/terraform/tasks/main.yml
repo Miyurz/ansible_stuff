@@ -1,0 +1,7 @@
+---
+
+- name: install terraform
+  get_url:
+    url: "{{ tf_url }}"
+    dest: /usr/local/bin
+    owner: root
