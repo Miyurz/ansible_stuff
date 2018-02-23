@@ -8,6 +8,6 @@ update_roles: .gitmodules clear_roles
 	git submodule update --init --recursive
 
 provision:
-	/bin/python2.7 /bin/ansible-playbook configure-box.yml
+	/bin/python2.7 /bin/ansible-playbook -vvv configure-box.yml
 
 all: pre-reqs clear_roles update_roles provision

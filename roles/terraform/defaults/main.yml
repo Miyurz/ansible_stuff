@@ -1,3 +1,4 @@
 ---
+tf_version_2: 0.11.4
 tf_version: 0.11.3
-tf_url: https://releases.hashicorp.com/terraform/"{{ tf_version }}"/terraform_"{{ tf_url }}"_linux_amd64.zip
+tf_url: 'https://releases.hashicorp.com/terraform/{{ tf_version }}/terraform_{{ tf_version }}_linux_amd64.zip'

@@ -1,7 +1,16 @@
 ---
 
-- name: install terraform
-  get_url:
-    url: "{{ tf_url }}"
+- name: Install terraform
+  become: true 
+  unarchive:
+    src: "{{ tf_url }}"
     dest: /usr/local/bin
-    owner: root
+    remote_src: yes
+    owner: ansible
+
+- name: check installed terraform version
+  command: terraform version
+  register: tf_installed_version
+
+- fail:
+  when: 'tf_version_2 | string not in tf_installed_version.stdout'
